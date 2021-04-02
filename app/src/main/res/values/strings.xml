@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MP-Project1</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="login_label"><b>Login</b></string>
+    <string name="placeholder_email">Enter Email Address</string>
+    <string name="placeholder_password">Please Enter Password</string>
+    <string name="hint_ConfirmPassword">Confirm Password</string>
+    <string name="hint_name">Full Name</string>
+    <string name="hint_location">Location</string>
+    <string name="placeholder_register">Register</string>
+    <string name="forgot_Password"><i><u>Forgot Password?</u></i></string>
+
 </resources>
