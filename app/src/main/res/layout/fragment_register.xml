@@ -1,14 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundcolor"
     tools:context=".RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/image"
+        android:src="@drawable/aaaa"
+         />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image1"
+        android:inputType="textEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="@string/placeholder_email"
+        android:textAlignment="center"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/edt_register_password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_email"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+
+        android:hint="@string/placeholder_password"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_register_password"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+        android:hint="@string/placeholder_ConfirmPassword"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/fullname"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirm_password"
+        android:inputType="textPersonName"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="@string/hint_name"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullname"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+        android:text="@string/Gender"
+        android:textSize="30sp">
+
+    </TextView>
+
+    <RadioGroup
+        android:id="@+id/groupradio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1"
+        >
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+
+            android:layout_toRightOf="@+id/textView1"
+            android:text="@string/male"/>
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_toRightOf="@+id/male"
+            android:text="@string/female">
+
+        </RadioButton>
+
+    </RadioGroup>
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="@string/dob"
+     android:layout_centerHorizontal="true"
+     android:layout_below="@+id/groupradio">
+
+ </TextView>
+
+    <DatePicker
+        android:id="@+id/date"
+        android:layout_width="309dp"
+        android:layout_height="219dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="420dp"
+        android:datePickerMode="spinner"
+        android:scaleX="1.0"
+        android:scaleY="0.5" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="300dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/date"
+        android:layout_marginTop="1dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/placeholder_register"
+        android:background="@drawable/buttonbackground"
+        android:textSize="30sp" />
+
+</RelativeLayout>

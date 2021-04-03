@@ -6,8 +6,12 @@
     <string name="login_label"><b>Login</b></string>
     <string name="placeholder_email">Enter Email Address</string>
     <string name="placeholder_password">Please Enter Password</string>
-    <string name="hint_ConfirmPassword">Confirm Password</string>
+    <string name="placeholder_ConfirmPassword">Confirm Password</string>
     <string name="hint_name">Full Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="Gender">Gender</string>
+    <string name="dob">Date Of Birth</string>
     <string name="hint_location">Location</string>
     <string name="placeholder_register">Register</string>
     <string name="forgot_Password"><i><u>Forgot Password?</u></i></string>
