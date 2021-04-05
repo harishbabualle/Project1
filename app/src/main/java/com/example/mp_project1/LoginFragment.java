@@ -2,57 +2,50 @@ package com.example.mp_project1;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LoginFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    NavController navController;
+
+
+    EditText edt_email, edt_pass;
+    Button btn_login,btn_register;
+
+    FirebaseUser currentUser;
+    private FirebaseAuth fireAuth;
+
 
     public LoginFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        fireAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -60,5 +53,72 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        edt_email = view.findViewById(R.id.Emailid);
+        edt_pass = view.findViewById(R.id.Password);
+        btn_login = view.findViewById(R.id.MainLoginBtn);
+
+        btn_register = view.findViewById(R.id.registerButton);
+
+        navController = Navigation.findNavController(getActivity(),R.id.host_fragment);
+
+
+        btn_login.setOnClickListener(view2 ->{
+
+                String email = edt_email.getText().toString();
+                String pass = edt_pass.getText().toString();
+                loginUser(email,pass);
+
+
+        });
+
+        btn_register.setOnClickListener(view1 -> {
+            navController.navigate(R.id.registerFragment);
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("LoginFragment","onStart Called!");
+
+        currentUser = fireAuth.getCurrentUser();
+
+        if (currentUser != null)
+        {
+            updateUI(currentUser);
+            Toast.makeText(getActivity().getApplicationContext(),"User Already Signing",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void loginUser(String email, String pass)
+    {
+        fireAuth.signInWithEmailAndPassword(email,pass)
+                .addOnCompleteListener(getActivity(), task -> {
+
+                    if (task.isSuccessful())
+                    {
+                        Toast.makeText(getActivity().getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
+                        currentUser = fireAuth.getCurrentUser();
+                        updateUI(currentUser);
+                    }else {
+                        Toast.makeText(getActivity().getApplicationContext(),"Authenticate Failed!", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+    }
+
+
+    public void updateUI(FirebaseUser user)
+    {
+        Bundle b = new Bundle();
+        b.putParcelable("user",user);
+        navController.navigate(R.id.welcomeScreenFragment,b);
     }
 }

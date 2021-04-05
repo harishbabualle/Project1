@@ -7,22 +7,23 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/backgroundcolor"
     tools:context=".RegisterFragment">
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
+    <TextView
+        android:id="@+id/textsignup"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:background="@drawable/image"
-        android:src="@drawable/aaaa"
-         />
+        android:text="@string/signup"
+        android:textAlignment="center"
+        android:textSize="40sp"
+
+        android:gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/register_email"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image1"
+        android:layout_below="@+id/textsignup"
         android:inputType="textEmailAddress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -126,12 +127,29 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </RadioButton>
 
     </RadioGroup>
- <TextView
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/groupradio"
+        android:inputType="textPersonName"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="@string/city"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <TextView
+     android:id="@+id/textview2"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:text="@string/dob"
      android:layout_centerHorizontal="true"
-     android:layout_below="@+id/groupradio">
+     android:layout_below="@+id/city">
 
  </TextView>
 
@@ -142,7 +160,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="420dp"
-        android:datePickerMode="spinner"
+        android:datePickerMode="calendar"
         android:scaleX="1.0"
         android:scaleY="0.5" />
 
