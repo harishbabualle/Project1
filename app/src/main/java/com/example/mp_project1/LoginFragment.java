@@ -1,5 +1,6 @@
 package com.example.mp_project1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,8 +27,6 @@ public class LoginFragment extends Fragment {
 
 
     NavController navController;
-
-
     EditText edt_email, edt_pass;
     Button btn_login,btn_register;
 
@@ -52,7 +51,8 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        return view;
     }
 
     @Override
@@ -115,10 +115,15 @@ public class LoginFragment extends Fragment {
     }
 
 
+
     public void updateUI(FirebaseUser user)
     {
         Bundle b = new Bundle();
         b.putParcelable("user",user);
-        navController.navigate(R.id.welcomeScreenFragment,b);
+//     navController.navigate(R.id.defaultFragment,b);
+       Intent i = new Intent(getContext(),WelcomeScreen.class);
+       i.putExtra("message","Welcome");
+       startActivity(i,b);
+
     }
 }

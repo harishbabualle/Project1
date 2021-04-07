@@ -15,9 +15,5 @@
         android:name="com.example.mp_project1.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/welcomeScreenFragment"
-        android:name="com.example.mp_project1.WelcomeScreenFragment"
-        android:label="fragment_welcome_screen"
-        tools:layout="@layout/fragment_welcome_screen" />
+
 </navigation>

@@ -112,7 +112,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
-
+            android:checked="true"
             android:layout_toRightOf="@+id/textView1"
             android:text="@string/male"/>
 
@@ -153,23 +153,25 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
  </TextView>
 
-    <DatePicker
-        android:id="@+id/date"
-        android:layout_width="309dp"
-        android:layout_height="219dp"
+    <EditText
+        android:id="@+id/dob"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview2"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:background="@drawable/edittext_background"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="420dp"
-        android:datePickerMode="calendar"
-        android:scaleX="1.0"
-        android:scaleY="0.5" />
-
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
     <Button
         android:id="@+id/signup"
         android:layout_width="300dp"
         android:layout_height="140dp"
-        android:layout_below="@+id/date"
-        android:layout_marginTop="1dp"
+        android:layout_below="@+id/dob"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:text="@string/placeholder_register"
         android:background="@drawable/buttonbackground"
