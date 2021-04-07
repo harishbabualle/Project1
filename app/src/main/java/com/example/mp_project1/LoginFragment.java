@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 
 public class LoginFragment extends Fragment {
@@ -69,6 +70,16 @@ public class LoginFragment extends Fragment {
         navController = Navigation.findNavController(getActivity(),R.id.host_fragment);
 
 
+        currentUser = fireAuth.getCurrentUser();
+
+        if (currentUser != null)
+        {
+            Toast.makeText(getActivity().getApplicationContext(),"User Already Signing",Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(getActivity(), WelcomeScreen.class);
+            startActivity(intent);
+        }
+
         btn_login.setOnClickListener(view2 ->{
 
                 String email = edt_email.getText().toString();
@@ -88,13 +99,7 @@ public class LoginFragment extends Fragment {
         super.onStart();
         Log.d("LoginFragment","onStart Called!");
 
-        currentUser = fireAuth.getCurrentUser();
 
-        if (currentUser != null)
-        {
-            updateUI(currentUser);
-            Toast.makeText(getActivity().getApplicationContext(),"User Already Signing",Toast.LENGTH_LONG).show();
-        }
     }
 
     public void loginUser(String email, String pass)
@@ -106,24 +111,17 @@ public class LoginFragment extends Fragment {
                     {
                         Toast.makeText(getActivity().getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
                         currentUser = fireAuth.getCurrentUser();
-                        updateUI(currentUser);
+//                        updateUI(currentUser);
+
+                        Intent intent=new Intent(getActivity().getApplicationContext(),WelcomeScreen.class);
+                        //intent.putExtra("message","  Welcome to dashboard ");
+                        startActivity(intent);
+
+
                     }else {
                         Toast.makeText(getActivity().getApplicationContext(),"Authenticate Failed!", Toast.LENGTH_SHORT).show();
                     }
 
                 });
-    }
-
-
-
-    public void updateUI(FirebaseUser user)
-    {
-        Bundle b = new Bundle();
-        b.putParcelable("user",user);
-//     navController.navigate(R.id.defaultFragment,b);
-       Intent i = new Intent(getContext(),WelcomeScreen.class);
-       i.putExtra("message","Welcome");
-       startActivity(i,b);
-
     }
 }

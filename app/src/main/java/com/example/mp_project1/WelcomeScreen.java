@@ -6,10 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.TaskStackBuilder;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class WelcomeScreen extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,20 +28,29 @@ public class WelcomeScreen extends AppCompatActivity  implements NavigationView.
     public DrawerLayout drawer_layout;
     public NavController navController;
     public NavigationView navigationView;
+    private FirebaseAuth firebaseAuth;
+    //private androidx.appcompat.app.ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome_screen);
         setupNavigationView();
     }
 
+    @SuppressLint("WrongConstant")
     public void setupNavigationView(){
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       // actionBar = getSupportActionBar();
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         drawer_layout= findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView2);
@@ -100,16 +113,27 @@ public class WelcomeScreen extends AppCompatActivity  implements NavigationView.
         menuItem.setCheckable(true);
         drawer_layout.closeDrawers();
         int id = menuItem.getItemId();
+
+        Fragment fragment = null;
         switch (id)
         {
             case R.id.profileFragment:
-                Toast.makeText(getApplicationContext(),"First Fragment Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"User Profile",Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.profileFrag);
                 break;
 
-            case R.id.logoutFragment:
-                Toast.makeText(getApplicationContext(),"Second Fragment Clicked",Toast.LENGTH_SHORT).show();
-                navController.navigate(R.id.logoutFrag);
+
+
+            case R.id.logout:
+                firebaseAuth.signOut();
+                Toast.makeText(getApplicationContext(),"User Logout",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(WelcomeScreen.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+
+            default:
+                fragment = new DashboardFragment();
                 break;
         }
 
