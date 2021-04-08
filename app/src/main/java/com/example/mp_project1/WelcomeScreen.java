@@ -117,9 +117,6 @@ public class WelcomeScreen extends AppCompatActivity  implements NavigationView.
         Fragment fragment = null;
         switch (id)
         {
-
-
-
             case R.id.profileFragment:
                 Toast.makeText(getApplicationContext(),"User Profile",Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.profileFrag);

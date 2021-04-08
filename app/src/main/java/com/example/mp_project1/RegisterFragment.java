@@ -96,20 +96,36 @@ public class RegisterFragment extends Fragment {
 
 
         register_btn.setOnClickListener(view1 -> {
+            if(checkFields())
+            {
+                Toast.makeText(getActivity().getApplicationContext(),"Please check the Fields ",Toast.LENGTH_LONG).show();
+                if (pswd.getText().length()>8)
+                {
+                    pswd.setError("Invalid Password, Password Should be at least 6 characters");
+                    pswd.requestFocus();
+                }
+                if (!pswd.getText().toString().equals(con_pswd.getText().toString()))
+                {
+                    con_pswd.setError("Password not match!");
+                    con_pswd.requestFocus();
+                }
+            }
+            else {
 
 
-                 String email = register_email.getText().toString();
-                 String pass = pswd.getText().toString();
-                 String name = full_name.getText().toString();
-                 String city1 = city.getText().toString();
-                 String dob = date.getText().toString().trim();
+                String email = register_email.getText().toString();
+                String pass = pswd.getText().toString();
+                String name = full_name.getText().toString();
+                String city1 = city.getText().toString();
+                String dob = date.getText().toString().trim();
 //                 int btn_checked = Integer.parseInt(radioButton.getText().toString());
-                 String gender = Gender();
+                String gender = Gender();
 
-                 int checkedId = radiogroup.getCheckedRadioButtonId();
+                int checkedId = radiogroup.getCheckedRadioButtonId();
 
-                 com.example.mp_project1.PersonalDetails details = new com.example.mp_project1.PersonalDetails(email,pass,name,city1,gender,dob);
-registerUser(details);
+                com.example.mp_project1.PersonalDetails details = new com.example.mp_project1.PersonalDetails(email, pass, name, city1, gender, dob);
+                registerUser(details);
+            }
              });
     }
 

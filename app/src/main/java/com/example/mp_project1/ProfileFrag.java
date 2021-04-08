@@ -60,10 +60,7 @@ public class ProfileFrag extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
-
         getUserData();
-
-
     }
 
     private void getUserData() {
@@ -71,35 +68,32 @@ public class ProfileFrag extends Fragment {
 
         currentUser = firebaseAuth.getCurrentUser();
 
-        DocumentReference docRef = fireStore.collection("User").document(currentUser.getUid());
+        DocumentReference doc = fireStore.collection("User").document(currentUser.getUid());
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                 if (documentSnapshot.exists())
                 {
                     String Name1 = documentSnapshot.getString("Name");
-
-
                     String Email = documentSnapshot.getString("Email");
                     String Gender = documentSnapshot.getString("Gender");
-                    String Birthdate = documentSnapshot.getString("Date of Birth");
+                    String Birthday = documentSnapshot.getString("Date of Birth");
                     String City = documentSnapshot.getString("City");
 
-                    dob.setText(Birthdate);
+                    dob.setText(Birthday);
                     city.setText(City);
                     email.setText(Email);
                     gender.setText(Gender);
                     Name.setText(Name1);
                 }
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(getActivity(), "Something Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Data import error", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -49,14 +49,10 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Welcome");
-
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
-
         textView = view.findViewById(R.id.textView1);
-
         UserInfo();
-
     }
 
     private void UserInfo() {
@@ -75,10 +71,7 @@ public class DashboardFragment extends Fragment {
                         Log.d("DashboardFragment", doc.getData().toString());
 
                         textView.setText("Welcome\n" + doc.get("Name"));
-
-
                     }
-
                 }
             }
         });
