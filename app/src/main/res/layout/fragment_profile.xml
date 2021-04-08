@@ -2,16 +2,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFrag">
+    tools:context=".ProfileFrag"
+    android:background="@drawable/backgroundcolor2">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edittext_background2"
+            android:hint="@string/hint_name"
+            android:paddingLeft="15dp" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/name"
+            android:background="@drawable/edittext_background2"
+            android:hint="@string/placeholder_email"
+            android:paddingLeft="15dp" />
+
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textColor="#F10857"
-        android:layout_centerInParent="true"
-        android:textSize="25sp" />
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/email"
+        android:background="@drawable/edittext_background2"
+        android:hint="DOB"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/gender"
+            android:background="@drawable/edittext_background2"
+            android:hint="DOB"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="30dp"/>
+
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_background2"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/dob"
+            android:hint="@string/city"
+            android:textSize="25sp"
+            android:paddingLeft="15dp" />
 
 
 </RelativeLayout>

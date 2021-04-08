@@ -20,20 +20,21 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 
 
 public class LoginFragment extends Fragment {
 
-
     NavController navController;
     EditText edt_email, edt_pass;
-    Button btn_login,btn_register;
-
+    Button btn_login, btn_register;
+    FirebaseFirestore fireStore;
     FirebaseUser currentUser;
     private FirebaseAuth fireAuth;
-
+    TextView textView;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -45,6 +46,7 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         fireAuth = FirebaseAuth.getInstance();
+        fireStore = FirebaseFirestore.getInstance();
 
     }
 
@@ -66,25 +68,22 @@ public class LoginFragment extends Fragment {
         btn_login = view.findViewById(R.id.MainLoginBtn);
 
         btn_register = view.findViewById(R.id.registerButton);
-
-        navController = Navigation.findNavController(getActivity(),R.id.host_fragment);
-
-
+        textView = view.findViewById(R.id.textView1);
+        navController = Navigation.findNavController(getActivity(), R.id.host_fragment);
         currentUser = fireAuth.getCurrentUser();
 
-        if (currentUser != null)
-        {
-            Toast.makeText(getActivity().getApplicationContext(),"User Already Signing",Toast.LENGTH_LONG).show();
+        if (currentUser != null) {
+            Toast.makeText(getActivity().getApplicationContext(), "User Already Signing", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(getActivity(), WelcomeScreen.class);
             startActivity(intent);
         }
 
-        btn_login.setOnClickListener(view2 ->{
+        btn_login.setOnClickListener(view2 -> {
 
-                String email = edt_email.getText().toString();
-                String pass = edt_pass.getText().toString();
-                loginUser(email,pass);
+            String email = edt_email.getText().toString();
+            String pass = edt_pass.getText().toString();
+            loginUser(email, pass);
 
 
         });
@@ -97,31 +96,28 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("LoginFragment","onStart Called!");
+        Log.d("LoginFragment", "onStart Called!");
 
 
     }
 
-    public void loginUser(String email, String pass)
-    {
-        fireAuth.signInWithEmailAndPassword(email,pass)
+    public void loginUser(String email, String pass) {
+        fireAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(getActivity(), task -> {
 
-                    if (task.isSuccessful())
-                    {
-                        Toast.makeText(getActivity().getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity().getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
                         currentUser = fireAuth.getCurrentUser();
-//                        updateUI(currentUser);
 
-                        Intent intent=new Intent(getActivity().getApplicationContext(),WelcomeScreen.class);
-                        //intent.putExtra("message","  Welcome to dashboard ");
+                        Intent intent = new Intent(getActivity().getApplicationContext(), WelcomeScreen.class);
                         startActivity(intent);
 
-
-                    }else {
-                        Toast.makeText(getActivity().getApplicationContext(),"Authenticate Failed!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Authenticate Failed!", Toast.LENGTH_SHORT).show();
                     }
 
                 });
     }
-}
+
+ }
+

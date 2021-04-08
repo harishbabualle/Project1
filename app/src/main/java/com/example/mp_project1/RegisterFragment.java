@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class RegisterFragment extends Fragment {
 
-    EditText register_email,pswd,con_pswd,full_name,date;
+    EditText register_email,pswd,con_pswd,full_name,date,city;
     TextView textview,dobtextview;
     TextView signupimg;
     RadioGroup radiogroup;
@@ -79,7 +79,7 @@ public class RegisterFragment extends Fragment {
         radiogroup = view.findViewById(R.id.groupradio);
         male_btn = view.findViewById(R.id.male);
         female_btn= view.findViewById(R.id.female);
-        EditText city = view.findViewById(R.id.city);
+         city = view.findViewById(R.id.city);
 
         register_btn = view.findViewById(R.id.signup);
 
@@ -132,13 +132,19 @@ registerUser(details);
               return true;
           }
           else if(TextUtils.isEmpty(full_name.getText().toString())){
-              con_pswd.setError("Enter your Full name is required");
-              con_pswd.requestFocus();
+              full_name.setError("Enter your Full name is required");
+              full_name.requestFocus();
               return true;
           } else if(TextUtils.isEmpty(date.getText().toString())){
 
-            con_pswd.setError("Enter your Full name is required");
-            con_pswd.requestFocus();
+            date.setError("Enter your Date of Birth");
+            date.requestFocus();
+
+            return true;
+        }else if(TextUtils.isEmpty(city.getText().toString())){
+
+            city.setError("Enter your city name is required");
+            city.requestFocus();
 
             return true;
         }

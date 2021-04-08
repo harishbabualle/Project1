@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="25dp"
+    android:paddingRight="10dp"
+    android:background="@drawable/backgroundcolor2"
     tools:context=".DashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:textColorHint="#0B0B0B"
+        android:textColor="#000407"
+        android:textAlignment="center"
+        android:drawablePadding="15dp"
+        android:paddingLeft="15dp"
+        android:id="@+id/textView1"
+        android:gravity="center_horizontal" />
 
-</FrameLayout>
+</RelativeLayout>
